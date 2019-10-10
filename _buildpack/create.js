@@ -13,19 +13,7 @@ function createMe({ fs, tasks, options, findPackageRoot }) {
           "A new project based on a local copy of @magento/venia-ui";
         return target;
       }),
-      "webpack.config.js": async (opts, ...args) => {
-        const { targetPath, options } = opts;
-        // move the original out of the way
-        await fs.move(
-          targetPath,
-          resolve(options.directory, "webpack.venia.config.js"),
-          {
-            overwrite: true
-          }
-        );
-        // put ours in which calls the original from that path
-        tasks.Copy(opts, ...args);
-      }
+      "webpack.config.js": tasks.Copy
     },
     async after() {
       const toCopyFromVeniaLib = [
@@ -39,13 +27,7 @@ function createMe({ fs, tasks, options, findPackageRoot }) {
         toCopyFromVeniaLib.map(veniaAsset =>
           fs.copy(
             resolve(uiDepLocation, veniaAsset),
-            resolve(
-              options.directory,
-              "src",
-              "@magento",
-              "venia-ui",
-              veniaAsset
-            ),
+            resolve(options.directory, "src", "venia-ui", veniaAsset),
             {
               overwrite: true,
               dereference: true,
