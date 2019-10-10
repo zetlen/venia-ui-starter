@@ -1,6 +1,6 @@
 {
   "name": "@jzetlen/venia-ui-starter",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "An alternate template for @magento/create-pwa which starts with a full copy of the @magento/venia-ui source",
   "author": "jzetlen <jzetlen@adobe.com>",
   "license": "UNLICENSED",
